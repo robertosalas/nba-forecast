@@ -8,7 +8,7 @@ from sklearn.model_selection import train_test_split
 from tqdm import tqdm
 
 dataset = "dataset_2012-23"
-con = sqlite3.connect("/Users/robertosalas/Documents/code/NBA-Machine-Learning-Sports-Betting/Data/dataset.sqlite")
+con = sqlite3.connect("./Data/dataset.sqlite")
 data = pd.read_sql_query(f"select * from \"{dataset}\"", con, index_col="index")
 con.close()
 
@@ -46,4 +46,4 @@ for x in tqdm(range(300)):
     acc_results.append(acc)
     # only save results if they are the best so far
     if acc == max(acc_results):
-        model.save_model('/Users/robertosalas/Documents/code/NBA-Machine-Learning-Sports-Betting/Models/XGBoost_{}%_ML-3.json'.format(acc))
+        model.save_model('./Models/XGBoost_{}%_ML-3.json'.format(acc))

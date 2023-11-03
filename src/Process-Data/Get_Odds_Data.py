@@ -29,7 +29,7 @@ year_from = 2023
 sportsbook = 'fanduel'
 df_data = []
 
-con = sqlite3.connect("/Users/robertosalas/Documents/code/NBA-Machine-Learning-Sports-Betting/Data/odds.sqlite")
+con = sqlite3.connect("./Data/odds.sqlite")
 
 for season1 in tqdm(season):
     teams_last_played = {}

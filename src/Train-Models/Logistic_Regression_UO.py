@@ -7,7 +7,7 @@ from sklearn.metrics import classification_report, accuracy_score
 from sklearn.model_selection import train_test_split
 
 dataset = "dataset_2012-23"
-con = sqlite3.connect("/Users/robertosalas/Documents/code/NBA-Machine-Learning-Sports-Betting/Data/dataset.sqlite")
+con = sqlite3.connect("./Data/dataset.sqlite")
 data = pd.read_sql_query(f"select * from \"{dataset}\"", con, index_col="index")
 con.close()
 

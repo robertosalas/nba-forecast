@@ -41,7 +41,7 @@ day_from = 24
 month_from = 10
 year_from = 2023
 
-con = sqlite3.connect("/Users/robertosalas/Documents/code/NBA-Machine-Learning-Sports-Betting/Data/teams.sqlite")
+con = sqlite3.connect("./Data/teams.sqlite")
 
 for season1 in tqdm(season):
     for month1 in tqdm(month):
