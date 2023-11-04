@@ -30,7 +30,8 @@ for x in tqdm(range(300)):
         'max_depth': 3,
         'eta': 0.01,
         'objective': 'multi:softprob',
-        'num_class': 2
+        'num_class': 2,
+        'device':"cuda"
     }
     epochs = 750
 
