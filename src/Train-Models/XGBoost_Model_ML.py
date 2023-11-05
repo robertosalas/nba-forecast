@@ -31,7 +31,8 @@ for x in tqdm(range(300)):
         'eta': 0.01,
         'objective': 'multi:softprob',
         'num_class': 2, 
-        'tree_method': 'gpu_hist'
+        'tree_method': 'hist',
+        'device': 'cuda'
     }
     epochs = 750
 
