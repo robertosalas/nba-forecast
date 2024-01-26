@@ -48,4 +48,4 @@ for x in tqdm(range(300)):
     acc_results.append(acc)
     # only save results if they are the best so far
     if acc == max(acc_results):
-        model.save_model('./Models/XGBoost_{}%_ML-4.json'.format(acc))
+        model.save_model('./Models/XGBoost_{}%_ML-3.json'.format(acc))
