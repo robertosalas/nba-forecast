@@ -23,8 +23,8 @@ OU_Cover = []
 games = []
 days_rest_away = []
 days_rest_home = []
-teams_con = sqlite3.connect("../../Data/teams.sqlite")
-odds_con = sqlite3.connect("../../Data/odds.sqlite")
+teams_con = sqlite3.connect("./Data/teams.sqlite")
+odds_con = sqlite3.connect("./Data/odds.sqlite")
 
 for season in tqdm(season_array):
     odds_df = pd.read_sql_query(f"select * from \"odds_{season}\"", odds_con, index_col="index")
@@ -121,6 +121,6 @@ for field in frame.columns.values:
     if 'TEAM_' in field  or 'Date' in field or field not in frame:
         continue
     frame[field] = frame[field].astype(float)
-con = sqlite3.connect("../../Data/dataset.sqlite")
+con = sqlite3.connect("./Data/dataset.sqlite")
 frame.to_sql("dataset_2012-24", con, if_exists="replace")
 con.close()
