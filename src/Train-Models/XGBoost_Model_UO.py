@@ -8,7 +8,7 @@ from sklearn.model_selection import train_test_split
 from tqdm import tqdm
 
 dataset = "dataset_2012-24"
-con = sqlite3.connect("./Data/dataset.sqlite")
+con = sqlite3.connect("../../Data/dataset.sqlite")
 data = pd.read_sql_query(f"select * from \"{dataset}\"", con, index_col="index")
 con.close()
 OU = data['OU-Cover']
@@ -30,9 +30,7 @@ for x in tqdm(range(100)):
         'max_depth': 20,
         'eta': 0.05,
         'objective': 'multi:softprob',
-        'num_class': 3, 
-        'tree_method': 'hist',
-        'device': 'cuda'
+        'num_class': 3
     }
     epochs = 750
 
@@ -49,4 +47,4 @@ for x in tqdm(range(100)):
     acc_results.append(acc)
     # only save results if they are the best so far
     if acc == max(acc_results):
-        model.save_model('./Models/XGBoost_{}%_UO-20-01.json'.format(acc))
+        model.save_model('../../Models/XGBoost_{}%_UO-9.json'.format(acc))

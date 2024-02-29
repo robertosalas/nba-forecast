@@ -7,9 +7,9 @@ from datetime import date, datetime, timedelta
 
 from tqdm import tqdm
 
+sys.path.insert(1, os.path.join(sys.path[0], '../..'))
 from src.Utils.tools import get_json_data, to_data_frame
 
-sys.path.insert(1, os.path.join(sys.path[0], '..'))
 
 url = 'https://stats.nba.com/stats/' \
       'leaguedashteamstats?Conference=&' \
@@ -34,14 +34,10 @@ days = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 2
         31]
 
 begin_year_pointer = year[0]
-end_year_pointer = year[0]
+end_year_pointer = year[1]
 count = 0
 
-day_from = 24
-month_from = 10
-year_from = 2023
-
-con = sqlite3.connect("./Data/teams.sqlite")
+con = sqlite3.connect("../../Data/teams.sqlite")
 
 for season1 in tqdm(season):
     for month1 in tqdm(month):
@@ -49,8 +45,6 @@ for season1 in tqdm(season):
             count += 1
             end_year_pointer = year[count]
         for day1 in tqdm(days):
-            if end_year_pointer <= year_from and month1 <= month_from and day1 < day_from:
-                continue
             if month1 == 10 and day1 < 19:
                 continue
             if month1 in [4, 6, 9, 11] and day1 > 30:

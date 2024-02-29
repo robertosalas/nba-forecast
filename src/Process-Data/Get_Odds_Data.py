@@ -9,10 +9,10 @@ import pandas as pd
 from sbrscrape import Scoreboard
 from tqdm import tqdm
 
-sys.path.insert(1, os.path.join(sys.path[0], '..'))
+sys.path.insert(1, os.path.join(sys.path[0], '../..'))
 from src.Utils.tools import get_date
 
-year = [2023, 2024]
+year = ["2023", "2024"]
 season = ["2023-24"]
 
 month = [10, 11, 12, 1, 2, 3, 4, 5, 6]
@@ -22,14 +22,10 @@ begin_year_pointer = year[0]
 end_year_pointer = year[0]
 count = 0
 
-day_from = 24
-month_from = 10
-year_from = 2023
-
 sportsbook = 'fanduel'
 df_data = []
 
-con = sqlite3.connect("./Data/odds.sqlite")
+con = sqlite3.connect("../../Data/odds.sqlite")
 
 for season1 in tqdm(season):
     teams_last_played = {}
@@ -38,20 +34,14 @@ for season1 in tqdm(season):
             count += 1
             end_year_pointer = year[count]
         for day1 in tqdm(days):
-            if end_year_pointer <= year_from and month1 <= month_from and day1 < day_from:
-                continue
-            if month1 == 10 and day1 < 19:
+            if month1 == 10 and day1 < 24:
                 continue
             if month1 in [4, 6, 9, 11] and day1 > 30:
                 continue
             if month1 == 2 and day1 > 28:
                 continue
-            if end_year_pointer == datetime.now().year:
-                if month1 == datetime.now().month and day1 > datetime.now().day:
-                    continue
-                if month1 > datetime.now().month:
-                    continue
-            if end_year_pointer > datetime.now().year:
+            # skip future games
+            if datetime.now() < datetime(year=int(end_year_pointer), month=month1, day=day1):
                 continue
             print(f"{end_year_pointer}-{month1:02}-{day1:02}")
             sb = Scoreboard(date=f"{end_year_pointer}-{month1:02}-{day1:02}")

@@ -1,8 +1,6 @@
 import argparse
 from datetime import datetime, timedelta
 
-import os; os.environ['TF_CPP_MIN_LOG_LEVEL'] = '1'
-
 import pandas as pd
 import tensorflow as tf
 from colorama import Fore, Style
